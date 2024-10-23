@@ -41,19 +41,17 @@ const getMovies = async()=>{
     let response = await fetch(urlToFetch);
     
     if(response.ok){
-      let newResponse = await response.json();
+      let jsonResponse = await response.json();
+      let movies = jsonResponse.results;
 
-      console.log(newResponse.results);
+      console.log(movies);
 
-      return newResponse; 
+      return movies; 
     }
     
-  }
-  catch(error){
+    }
+    catch(error){
     console.error(error)
-  }
+    }
 
 }
-
-getGenres();
-getMovies();
