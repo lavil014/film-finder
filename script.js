@@ -56,11 +56,12 @@ const getMovies = async()=>{
 
 }
 
-const getMovieInfo = async(movie)=>{
-  let movieId = movie;
+const getMovieInfo = async(movieId)=>{
   let movieEndpoint = `/movie/${movieId}`;
   let requestParams = `?api_key=${tmdbKey}`;
   let urlToFetch = `${tmdbBaseUrl}${movieEndpoint}${requestParams}`;
+
+  console.log(urlToFetch)
 
   try{
     let response = await fetch(urlToFetch);
@@ -79,4 +80,20 @@ const getMovieInfo = async(movie)=>{
   }
 }
 
-getMovieInfo(550)
+const showRandomMovie = async ()=>{
+  const movieInfo = document.getElementById('movieInfo');
+
+  if(movieInfo.childNodes.length>0){
+    clearCurrentMovie();
+  }
+
+  let movies = await getMovies();
+  let randomMovie = await getRandomMovie(movies);
+  let info = await getMovieInfo(randomMovie.id);
+
+  displayMovie(info);
+  
+}
+
+getGenres().then(populateGenreDropdown);
+playBtn.onclick = showRandomMovie;
