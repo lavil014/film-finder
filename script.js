@@ -63,13 +63,20 @@ const getMovieInfo = async(movie)=>{
   let urlToFetch = `${tmdbBaseUrl}${movieEndpoint}${requestParams}`;
 
   try{
-    
+    let response = await fetch(urlToFetch);
+    if (response.ok){
+      let movieInfo = await response.json()
+
+      console.log(movieInfo);
+
+      return movieInfo;
+    } else{
+      console.error('Error on response:' ,response.status);
+    }
   }
   catch(error){
-    console.error(error);
+    console.error('Error on fetching data:',error);
   }
-  console.log(urlToFetch);
-
 }
 
-getMovieInfo(210)
+getMovieInfo(550)
