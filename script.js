@@ -55,3 +55,21 @@ const getMovies = async()=>{
     }
 
 }
+
+const getMovieInfo = async(movie)=>{
+  let movieId = movie;
+  let movieEndpoint = `/movie/${movieId}`;
+  let requestParams = `?api_key=${tmdbKey}`;
+  let urlToFetch = `${tmdbBaseUrl}${movieEndpoint}${requestParams}`;
+
+  try{
+    
+  }
+  catch(error){
+    console.error(error);
+  }
+  console.log(urlToFetch);
+
+}
+
+getMovieInfo(210)
